@@ -108,3 +108,6 @@ dist
 
 # Custom JS
 dummy.js
+
+#Nohup SH file Logs
+nohup.out

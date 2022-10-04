@@ -16,12 +16,15 @@
  * @param {String} notification - Notication Text Along with email id of students with @mentioned, Students email id is not mandatory
  * @returns {Array}  200 - recipients - Array of students
  */
- async function retriveNotification(req, res, next) {
+ async function retriveNotification(req, res) {
     try {
-        res.json({});
+        return res.status(200).json({
+            "Sucess": true
+        })
     } catch (err) {
-        console.error(`Error while retrieving a list of students who can receive a given notification`, err.message);
-        next(err);
+        return res.status(400).json({
+            message: err.message
+        })
     }
 }
 

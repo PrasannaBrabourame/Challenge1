@@ -16,12 +16,13 @@
  * @param {Array} students - Array of students email addresses to register
  * @returns {status} 204 - successfully fulfilled the request No Content Response Required
  */
- async function registerStudents(req, res, next) {
+ async function registerStudents(req, res) {
     try {
-        res.json({});
+        return res.sendStatus(204)
     } catch (err) {
-        console.error(`Error while registering students`, err.message);
-        next(err);
+        return res.status(400).json({
+            message: err.message
+        })
     }
 }
 
@@ -34,12 +35,15 @@
  * @returns {Array} students - Array of students email addresses for a given teacher or all students based on the parameters passed
  */
 
-async function retriveStudents(req, res, next) {
+async function retriveStudents(req, res) {
     try {
-        res.json({});
+        return res.status(200).json({
+            "Sucess": true
+        })
     } catch (err) {
-        console.error(`Error while retriving students`, err.message);
-        next(err);
+        return res.status(400).json({
+            message: err.message
+        })
     }
 }
 
@@ -53,12 +57,13 @@ async function retriveStudents(req, res, next) {
  * @returns {status} 204 - successfully fulfilled the request No Content Response Required
  */
 
-async function suspendStudent(req, res, next) {
+async function suspendStudent(req, res) {
     try {
-        res.json({});
+        return res.sendStatus(204)
     } catch (err) {
-        console.error(`Error while suspending students`, err.message);
-        next(err);
+        return res.status(400).json({
+            message: err.message
+        })
     }
 }
 
