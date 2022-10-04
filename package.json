@@ -1,0 +1,27 @@
+{
+  "name": "challenge1",
+  "version": "1.0.0",
+  "description": "Teachers need a system where they can perform administrative functions for their students. Teachers and students are identified by their email addresses.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrasannaBrabourame/Challenge1.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "JavaScript",
+    "JS",
+    "Challenges",
+    "Developer",
+    "Assesment"
+  ],
+  "author": "Prasanna Brabourame",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PrasannaBrabourame/Challenge1/issues"
+  },
+  "homepage": "https://github.com/PrasannaBrabourame/Challenge1#readme"
+}
