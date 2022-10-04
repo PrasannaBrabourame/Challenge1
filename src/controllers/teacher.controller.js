@@ -10,14 +10,13 @@
 /**
  * function used to register the new student / students.
  * @async
- * @function register
+ * @function registerStudents
  * @type {POST Method}
  * @param {String} teacher - Teacher Email Address
  * @param {Array} students - Array of students email addresses to register
  * @returns {status} 204 - successfully fulfilled the request No Content Response Required
  */
-
-async function register(req, res, next) {
+ async function registerStudents(req, res, next) {
     try {
         res.json({});
     } catch (err) {
@@ -29,13 +28,13 @@ async function register(req, res, next) {
 /**
  * function used to retrieve the list of students for a given teacher or all students based on the parameters passed
  * @async
- * @function commonstudents
+ * @function retriveStudents
  * @type {GET Method}
  * @param {String} teacher - Teacher Email Address in Query String
  * @returns {Array} students - Array of students email addresses for a given teacher or all students based on the parameters passed
  */
 
-async function commonstudents(req, res, next) {
+async function retriveStudents(req, res, next) {
     try {
         res.json({});
     } catch (err) {
@@ -47,14 +46,14 @@ async function commonstudents(req, res, next) {
 /**
  * function used to suspend a specified student
  * @async
- * @function suspend
+ * @function suspendStudent
  * @type {POST Method}
  * @param {String} teacher - Teacher Email Address in Query String
  * @param {Array} students - Array of students email addresses to register
  * @returns {status} 204 - successfully fulfilled the request No Content Response Required
  */
 
-async function suspend(req, res, next) {
+async function suspendStudent(req, res, next) {
     try {
         res.json({});
     } catch (err) {
@@ -64,7 +63,7 @@ async function suspend(req, res, next) {
 }
 
 module.exports = {
-    register,
-    commonstudents,
-    suspend
+    registerStudents,
+    retriveStudents,
+    suspendStudent
 };
