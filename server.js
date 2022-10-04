@@ -6,20 +6,19 @@
  * Author       :  https://github.com/PrasannaBrabourame                        *
  * Last updated :  04 Oct 2022                                                  *
  ********************************************************************************/
-
  const express = require('express');
  const compression = require('compression')
  const bodyParser = require('body-parser');
  const helmet = require('helmet')
  const app = express();
  const port = process.env.PORT || 3000;
-
+ 
  const teacherRouter = require('./src/routes/teacher.routes');
-
-
-app.use('/api', teacherRouter);
-
-
+ const notificationRouter = require('./src/routes/notification.routes')
+ 
+ 
+ app.use('/api', teacherRouter);
+ app.use('/api', notificationRouter);
  
  app.use(bodyParser.json());
  app.use(
@@ -36,17 +35,17 @@ app.use('/api', teacherRouter);
          'message': 'ok'
      });
  })
-
-/* Error handler middleware for Status 404 */
+ 
+ /* Error handler middleware for Status 404 */
  app.use((req, res, next) => {
-    res.status(404).send("Sorry can't find that!")
-  })
-
-/* Error handler middleware for Status 500 */
+     res.status(404).send("Sorry can't find that!")
+ })
+ 
+ /* Error handler middleware for Status 500 */
  app.use((err, req, res, next) => {
-    console.error(err.stack)
-    res.status(500).send('Something broke!')
-  })
+     console.error(err.stack)
+     res.status(500).send('Something broke!')
+ })
  
  app.listen(port, '0.0.0.0', () => {
      console.log(`Example app listening at http://localhost:${port}`)
