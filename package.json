@@ -4,7 +4,8 @@
   "description": "Teachers need a system where they can perform administrative functions for their students. Teachers and students are identified by their email addresses.",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "migrate": "knex migrate:latest --knexfile db/knexfile.js"
   },
   "repository": {
     "type": "git",
