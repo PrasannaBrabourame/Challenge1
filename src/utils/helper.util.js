@@ -15,36 +15,32 @@
  * @param {String} text - raw string with notification and students email address with @ symbol
  * @returns {Array} List of students email addresses
  */
-
- 
-const splitStudentEmail = (text) => {
-     try {
+ const splitStudentEmail = (text) => {
+    try {
         if (!text || typeof text === "number") {
             throw new Error('Improper Input Details')
         }
-         const expressions = {
-             main: /@(.*?com)/gm,
-         }
+        const expressions = /@(.*?com)/gm
         let matches
         let studentsDetails = []
-        while (matches = expressions.main.exec(text)) {
+        while (matches = expressions.exec(text)) {
             studentsDetails.push(matches[1]);
         }
         if (studentsDetails.length < 1) {
             throw new Error('No students email address found')
         }
-         return {
+        return {
             status: true,
             result: studentsDetails
-         }
-     } catch (e) {
-         return {
+        }
+    } catch (e) {
+        return {
             status: false,
             error: e.message
-         }
-     }
- }
- 
+        }
+    }
+}
+
 
 module.exports = {
     splitStudentEmail
