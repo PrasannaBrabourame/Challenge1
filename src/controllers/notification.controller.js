@@ -7,6 +7,14 @@
  * Last updated :  04 Oct 2022                                                  *
  ********************************************************************************/
 
+ const {
+    notificationService
+} = require('../services/notification.service')
+
+ const {
+    schemaValidator
+} = require('../utils/schema.util')
+
 /**
  * function used to retrieve a list of students who can receive a given notification
  * @async
@@ -18,12 +26,19 @@
  */
  async function retriveNotification(req, res) {
     try {
-        return res.status(200).json({
-            "Sucess": true
-        })
+        let params = req.body
+        let schemaValidation = await schemaValidator.retriveNotification.validate(params)
+        if (schemaValidation.error) {
+            throw schemaValidation.error.message
+        }
+        let resRetriveNotification = await notificationService.retriveNotification(params)
+        if (!resRetriveNotification.success) {
+            throw resRetriveNotification.message
+        }
+        return res.status(200).json(resRetriveNotification.data)
     } catch (err) {
         return res.status(400).json({
-            message: err.message
+            message: err.message ? err.message : err
         })
     }
 }

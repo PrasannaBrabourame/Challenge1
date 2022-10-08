@@ -17,8 +17,7 @@
  const notificationRouter = require('./src/routes/notification.routes')
  
  
- app.use('/api', teacherRouter);
- app.use('/api', notificationRouter);
+ 
  
  app.use(bodyParser.json());
  app.use(
@@ -35,6 +34,9 @@
          'message': 'ok'
      });
  })
+
+ app.use('/api', teacherRouter);
+ app.use('/api', notificationRouter);
  
  /* Error handler middleware for Status 404 */
  app.use((req, res, next) => {
@@ -46,6 +48,7 @@
      console.error(err.stack)
      res.status(500).send('Something broke!')
  })
+
 
  app.listen(port, '0.0.0.0', () => {
      console.log(`Example app listening at http://localhost:${port}`)
