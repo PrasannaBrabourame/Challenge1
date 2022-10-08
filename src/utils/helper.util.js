@@ -1,10 +1,10 @@
 /*********************************************************************************
  *                                                                              *
  * Author       :  Prasanna Brabourame                                          *
- * Version      :  1.0.0                                                        *
+ * Version      :  2.0.0                                                        *
  * Date         :  04 Sep 2022                                                  *
  * Author       :  https://github.com/PrasannaBrabourame                        *
- * Last updated :  08 Oct 2022                                                  *
+ * Last updated :  09 Oct 2022                                                  *
  ********************************************************************************/
 /**
  * function used to split the students email address from the notification string
@@ -24,16 +24,13 @@
         while(matches = expressions.exec(text)) {
             studentsDetails.push(matches[1]);
         }
-        if(studentsDetails.length < 1) {
-            throw new Error('No students email address found')
-        }
         return {
-            status: true,
-            result: studentsDetails
+            success: true,
+            data: studentsDetails
         }
     } catch(e) {
         return {
-            status: false,
+            success: false,
             error: e.message
         }
     }
@@ -62,12 +59,12 @@ const arrayToObject = (arr, key) => {
  * @returns {Object} {key:val}
  */
 const objectArrayFormator = (arr, key) => {
-return arr.map(function(val) {
-    return val[key]
+    return arr.map(function(val) {
+        return val[key]
 }, {});
 }
 module.exports = {
-splitStudentEmail,
-arrayToObject,
-objectArrayFormator
+    splitStudentEmail,
+    arrayToObject,
+    objectArrayFormator
 }

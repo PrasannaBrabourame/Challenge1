@@ -1,16 +1,19 @@
 /*********************************************************************************
  *                                                                              *
  * Author       :  Prasanna Brabourame                                          *
- * Version      :  1.0.0                                                        *
+ * Version      :  2.0.0                                                        *
  * Date         :  04 Sep 2022                                                  *
  * Author       :  https://github.com/PrasannaBrabourame                        *
- * Last updated :  08 Oct 2022                                                  *
+ * Last updated :  09 Oct 2022                                                  *
  ********************************************************************************/
  const DbConfigOptions = require('../../knexfile')
  const knex = require('knex')(DbConfigOptions['development']);
  const {
      masterStudents, masterTeachers, transactionMappings
  } = require('../configs/general.config')
+ const {
+     statusCodes
+ } = require('../configs/status.config');
  const {
      objectArrayFormator
  } = require('../utils/helper.util')
@@ -62,12 +65,12 @@
              }
              return {
                  success: true,
-                 message: "Data Pushed Successfully"
+                 message: statusCodes[1]
              }
          } catch(err) {
              return {
                  success: false,
-                 message: err.message
+                 message: err.message ? err.message : err
              }
          }
      },
@@ -83,19 +86,22 @@
              student
          } = params;
          try {
-             await knex(masterStudents).where({
+             let resSuspendStudent = (await knex(masterStudents).where({
                  email: student
              }).update({
                  suspend: true
-             })
+             }))
+             if(!resSuspendStudent) {
+                 throw new Error(statusCodes[2])
+             }
              return {
                  success: true,
-                 message: "Data Updated Successfully"
+                 message: statusCodes[1]
              }
          } catch(err) {
              return {
                  success: false,
-                 message: err.message
+                 message: err.message ? err.message : err
              }
          }
      },
@@ -111,7 +117,11 @@
              teacher
          } = params;
          try {
-             let teacherDetails = await knex(masterTeachers).where((builder) => builder.whereIn('email', teacher)).select('id')
+             let teacherFormattor = typeof teacher === 'string' ? [teacher] : teacher
+             let teacherDetails = await knex(masterTeachers).where((builder) => builder.whereIn('email', teacherFormattor)).select('id')
+             if([...new Set(teacherFormattor)].length !== teacherDetails.length) {
+                 throw new Error(statusCodes[5])
+             }
              let mappedStudentDetails = await knex(transactionMappings).whereIn('teacher_id', objectArrayFormator(teacherDetails, 'id')).groupBy('student_id').havingRaw('count(distinct teacher_id) = ' + teacherDetails.length).select('student_id')
              let studentDetails = await knex(masterStudents).whereIn('id', objectArrayFormator(mappedStudentDetails, 'student_id')).select('email')
              return {
@@ -123,7 +133,7 @@
          } catch(err) {
              return {
                  success: false,
-                 message: err.message
+                 message: err.message ? err.message : err
              }
          }
      }
