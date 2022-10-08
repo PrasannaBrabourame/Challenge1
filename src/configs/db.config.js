@@ -6,13 +6,15 @@
  * Author       :  https://github.com/PrasannaBrabourame                        *
  * Last updated :  04 Oct 2022                                                  *
  ********************************************************************************/
+require('dotenv').config()
 
 const db = {
-    host: env.DB_HOST,
-    user: env.DB_USER,
-    password: env.DB_PASSWORD,
-    database: env.DB_NAME,
-    port: env.DB_PORT 
-};
-
+    client: 'mysql2',
+    connection: {
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+    }
+}
 module.exports = db;

@@ -106,8 +106,8 @@ dist
 #vscode
 .vscode/
 
-# Custom JS
-dummy.js
+# Trash
+trash
 
 #Nohup SH file Logs
 nohup.out

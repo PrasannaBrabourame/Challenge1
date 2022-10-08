@@ -6,13 +6,27 @@
  * Author       :  https://github.com/PrasannaBrabourame                        *
  * Last updated :  07 Oct 2022                                                  *
  ********************************************************************************/
+ const Joi = require('joi');
 
- const masterStudents = 'Mst_Student'
- const masterTeachers = 'Mst_Teacher'
- const transactionMappings = 'Trn_TeacherStudentMapping'
 
+ const schemaValidator = {
+     registerStudent: Joi.object({
+         teacher: Joi.string().email().required(),
+         students: Joi.array().required()
+     }),
+     suspendStudent: Joi.object({
+         student: Joi.string().email().required(),
+     }),
+     retriveNotification: Joi.object({
+        teacher: Joi.string().required(),
+        notification :Joi.string().required()
+    }),
+    retriveStudents: Joi.object({
+        teacher: Joi.array().required()
+    })
+
+ }
+ 
  module.exports = {
-    masterStudents,
-    masterTeachers,
-    transactionMappings
+     schemaValidator
  }
