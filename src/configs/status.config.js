@@ -6,9 +6,13 @@
  * Author       :  https://github.com/PrasannaBrabourame                        *
  * Last updated :  09 Oct 2022                                                  *
  ********************************************************************************/
- const express = require('express');
- const router = express.Router();
- const notificationController = require('../controllers/notification.controller');
- /* POST Retrieve a list of students who can receive a given notification */
- router.post('/retrievefornotifications', notificationController.retriveNotification);
- module.exports = router;
+ const statusCodes = {
+	1: "Data Pushed Successfully",
+	2: "Invalid Student Details. Please try again with a Valid Student Email Address",
+	3: "Invalid Teacher Details. Please try again with a Valid Teacher Email Address",
+	4: "Invalid Input Details. Please try again with a Valid Input Details",
+	5: "One of the Email Address is Invalid. Please try again with a Valid Email Address"
+}
+module.exports = {
+	statusCodes
+}

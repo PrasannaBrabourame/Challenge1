@@ -1,24 +1,80 @@
 
+# NodeJS API Challenge 1
+
+Teachers need a system where they can perform administrative functions for their students. Teachers and students are identified by their email addresses.
 
 
-MIT License
+## Prerequisites
 
-Copyright (c) 2022 Prasanna Brabourame
+MySQL should locally installed and database should be created 
+##  Getting Started In Local
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Step 1 : Clone the Repository
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+```bash
+git clone git@github.com:PrasannaBrabourame/Challenge1.git
+```
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Step 2 : Move to the project path
+
+```bash
+cd Challenge1
+```
+
+Step 3 : Installing Dependencies
+
+```bash
+npm Install
+```
+
+step 4 : Create .env file
+
+```bash
+touch .env
+```
+
+and create the envirnoment configurations as below 
+```bash
+PORT=3000         // Port Number
+DB_HOST=127.0.0.1 // MySQL URL
+DB_USER=root      // MySQL UserName
+DB_NAME=teacher   // MySQL DataBaseName
+```
+Add the below line to the envirnoment variables if the MySQL database is protected with password
+
+```bash
+DB_PASSWORD=XXXX  // MySQL Password
+```
+Note : Database should be created in MySQL
+
+step 5 : Database Migrations 
+
+```bash
+knex migrate:latest
+```
+ the above command will create the list of tables and columns details in MySQL details mentioned in the above environment variables
+
+step 6 : Running Test
+
+```bash
+sh init.sh
+```
+
+it will run all the test cases
+
+step 7 : Start the server locally
+
+```bash 
+node server.js
+```
+
+or you can run the Project with PM2 if PM2 is globally installed
+
+```bash
+pm2 start server.js --name service1
+```
+
+## Authors
+
+- [@Prasanna Brabourame](https://www.github.com/PrasannaBrabourame)
+

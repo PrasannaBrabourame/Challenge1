@@ -1,11 +1,12 @@
 {
   "name": "challenge1",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Teachers need a system where they can perform administrative functions for their students. Teachers and students are identified by their email addresses.",
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "migrate": "knex migrate:latest --knexfile db/knexfile.js"
+    "rollback": "knex migrate:rollback --knexfile knexfile.js",
+    "migrate": "knex migrate:latest --knexfile knexfile.js"
   },
   "repository": {
     "type": "git",
