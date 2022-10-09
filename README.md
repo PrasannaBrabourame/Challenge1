@@ -74,6 +74,12 @@ or you can run the Project with PM2 if PM2 is globally installed
 pm2 start server.js --name service1
 ```
 
+## Solution Diagram
+
+![Solution Diagram](https://github.com/PrasannaBrabourame/Challenge1/blob/main/img/solutionDiagram.png?raw=true)
+## Entity Diagram
+
+![Entity Diagram](https://github.com/PrasannaBrabourame/Challenge1/blob/main/img/entityDiagram.png?raw=true)
 ## Authors
 
 - [@Prasanna Brabourame](https://www.github.com/PrasannaBrabourame)
