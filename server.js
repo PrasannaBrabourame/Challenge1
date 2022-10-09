@@ -6,6 +6,7 @@
  * Author       :  https://github.com/PrasannaBrabourame                        *
  * Last updated :  09 Oct 2022                                                  *
  ********************************************************************************/
+ require('dotenv').config()
  const express = require('express')
  const compression = require('compression')
  const bodyParser = require('body-parser')

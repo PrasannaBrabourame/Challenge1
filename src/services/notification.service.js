@@ -38,14 +38,20 @@
              if(!notificationStudentDetails.success) {
                  throw new Error(notificationStudentDetails.message)
              }
+             notificationStudentDetails = [...new Set(notificationStudentDetails.data)]
              let teacherDetails = await knex(masterTeachers).where('email', teacher).select('id')
              if(!teacherDetails.length) {
                  throw new Error(statusCodes[3])
              }
+             let notificationStudentIDList = await knex(masterStudents).where((builder) => builder.whereIn('email', notificationStudentDetails).whereNot('suspend', false)).select('email')
+             let notificationStudentIDArray = objectArrayFormator(notificationStudentIDList, 'email')
              let studentIDList = await knex(transactionMappings).where('teacher_id', teacherDetails[0].id).select('student_id')
              let studentListArray = objectArrayFormator(studentIDList, 'student_id')
+             let finalStudentDetails = notificationStudentDetails.filter(function(item){
+                return !notificationStudentIDArray.includes(item)
+             })
              let studentDetails = await knex(masterStudents).where((builder) => builder.whereIn('id', studentListArray).whereNot('suspend', true)).select('email')
-             let recipients = [...new Set([...notificationStudentDetails.data, ...objectArrayFormator(studentDetails, 'email')])]
+             let recipients = [...new Set([...finalStudentDetails, ...objectArrayFormator(studentDetails, 'email')])]
              return {
                  success: true,
                  message: statusCodes[1],
