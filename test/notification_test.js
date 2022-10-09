@@ -1,7 +1,7 @@
 /*********************************************************************************
  *                                                                              *
  * Author       :  Prasanna Brabourame                                          *
- * Version      :  2.0.0                                                        *
+ * Version      :  3.0.0                                                        *
  * Date         :  09 Sep 2022                                                  *
  * Author       :  https://github.com/PrasannaBrabourame                        *
  * Last updated :  09 Oct 2022                                                  *

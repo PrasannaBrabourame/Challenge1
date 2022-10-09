@@ -1,7 +1,7 @@
 /*********************************************************************************
  *                                                                              *
  * Author       :  Prasanna Brabourame                                          *
- * Version      :  2.0.0                                                        *
+ * Version      :  3.0.0                                                        *
  * Date         :  04 Sep 2022                                                  *
  * Author       :  https://github.com/PrasannaBrabourame                        *
  * Last updated :  09 Oct 2022                                                  *
@@ -11,7 +11,6 @@
  const bodyParser = require('body-parser')
  const helmet = require('helmet')
  const app = express()
- const morgan = require('morgan')
  const port = process.env.PORT
  const teacherRouter = require('./src/routes/teacher.routes')
  const notificationRouter = require('./src/routes/notification.routes')
@@ -19,12 +18,6 @@
  app.use(bodyParser.urlencoded({
      extended: true,
  }));
- app.use(morgan('common', {
-     skip: function(req, res) {
-         return res.statusCode < 400
-     },
-     stream: __dirname + '/logger/morgan.log'
- })); // Morgan Logger
  app.use(helmet()); // setting HTTP headers
  app.disable('x-powered-by') // Removing x-powered-by header
  app.use(compression()) // Gzip compression
